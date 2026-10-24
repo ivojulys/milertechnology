@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MILER Technology — Automatizamos lo aburrido</title>
+  <meta name="description" content="Automatizamos lo aburrido para que vendas más y trabajes menos. Chatbots con IA, automatizaciones y desarrollo a medida.">
+  
+  <!-- Favicon / Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #F4F6F9;
+      --card-bg: #FFFFFF;
+      --navy: #0A192F;           /* Azul Francia Noche profundo */
+      --france-blue: #0052FF;     /* Azul Francia vibrante e impactante */
+      --france-blue-dark: #003ECC;
+      --silver-light: #E2E8F0;    /* Plateado claro / metálico */
+      --silver-accent: #E2E8F0;
+      --silver-gradient: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
+      --silver-border: #CBD5E1;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-light: #CBD5E1;
+      --border: #E2E8F0;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: var(--font-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+
+    p, span, .card p, .hero-sub {
+      text-wrap: pretty;
+    }
+
+    /* Layout Utilities */
+    .sec {
+      padding: 96px 24px;
+      text-align: center;
+    }
+
+    .in {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .sec-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      display: inline-block;
+    }
+
+    .h2 {
+      font-size: clamp(32px, 5vw, 44px);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      text-align: left;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -10px rgba(15, 42, 51, 0.08);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      min-height: 48px;
+      padding: 0 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-accent {
+      background: var(--france-blue);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 82, 255, 0.35);
+    }
+
+    .btn-accent:hover {
+      background: var(--france-blue-dark);
+      box-shadow: 0 6px 20px rgba(0, 82, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 1px solid #475569;
+      color: var(--silver-light);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--silver-light);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Checkmark list */
+    ul.ck {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--text-main);
+      margin-top: 8px;
+    }
+
+    ul.ck li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    ul.ck li::before {
+      content: "✓";
+      font-weight: 800;
+      color: var(--france-blue);
+    }
+
+    /* Navigation Bar */
+    header {
+      background-color: var(--navy);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-container {
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+
+    .logo span {
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      background: var(--silver-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 15px;
+      color: var(--text-light);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(100% 100% at 50% 0%, #132D50 0%, #0A192F 100%);
+      color: #fff;
+      padding: 96px 24px 112px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.08);
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 6vw, 56px);
+      line-height: 1.08;
+      max-width: 900px;
+      margin: 12px auto 0;
+      text-align: center;
+    }
+
+    .hero-title span {
+      color: #60A5FA; /* Azul Francia luminoso */
+      text-shadow: 0 0 25px rgba(96, 165, 250, 0.4);
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2.2vw, 20px);
+      line-height: 1.6;
+      color: var(--text-light);
+      max-width: 720px;
+      margin: 28px auto 0;
+      text-align: center;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
+    /* Process steps (Grid 2x2 centrado en tarjetas) */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    .process-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .process-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px -10px rgba(15, 42, 51, 0.08);
+    }
+
+    .process-card h3 {
+      font-size: 22px;
+      margin: 4px 0 0;
+    }
+
+    .process-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .process-step h3 {
+      font-size: 22px;
+      margin-top: 6px;
+    }
+
+    .process-step p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Form Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 48px;
+      align-items: center;
+      text-align: left;
+    }
+
+    .fld {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1px solid #1E3A5F;
+      background: #0E2442;
+      color: #fff;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      margin: 6px 0 20px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .fld:focus {
+      border-color: var(--france-blue);
+      box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.2);
+    }
+
+    textarea.fld {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--text-light);
+      display: block;
+      font-weight: 500;
+    }
+
+    /* WhatsApp floating button (bonus) */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25D366;
+      color: white;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      z-index: 99;
+      transition: transform 0.2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+    }
+
+    /* Mobile Responsive adjustments */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .sec {
+        padding: 64px 20px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Header -->
+  <header>
+    <div class="in nav-container">
+      <a href="#top" class="logo">MILER<span>TECHNOLOGY</span></a>
+      <nav class="nav-links">
+        <a href="#hago">Qué hacemos</a>
+        <a href="#casos">Lo que construimos</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a class="btn btn-accent" href="#contacto" style="min-height: 40px; padding: 0 20px; font-size: 14px;">Pedí tu diagnóstico</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="in">
+      <span class="eyebrow" style="color: var(--silver-light); background: rgba(226, 232, 240, 0.1); padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(226, 232, 240, 0.15);">Chatbots con IA · Automatización · Apps a medida</span>
+      <h1 class="hero-title">Automatizamos lo aburrido para que <span>vendas&nbsp;más</span> y trabajes&nbsp;menos.</h1>
+      <p class="hero-sub">
+        Somos MILER Technology, una empresa de tecnología creada y manejada por personas. Armamos asistentes con IA, apps y procesos que atienden, califican, agendan y cobran por vos, para que recuperes tiempo libre.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#contacto">Pedí tu diagnóstico gratis →</a>
+        <a class="btn btn-outline" href="#casos">Ver qué construimos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problema -->
+  <section class="sec" style="background-color: var(--bg);">
+    <div class="in">
+      <div class="sec-header">
+        <span class="eyebrow">El problema</span>
+        <h2 class="h2">No te falta demanda.<br>Te sobran tareas repetitivas.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3 style="font-size: 22px;">Contestás tarde</h3>
+          <p>Las consultas llegan de noche y los fines de semana. Si nadie responde rápido, el cliente se va con la competencia.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size: 22px;">Todo es manual</h3>
+          <p>Pedir comprobantes, actualizar planillas, controlar stock, confirmar turnos: horas desgastantes que no suman ventas.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size: 22px;">Todo depende de vos</h3>
+          <p>Si te tomás un fin de semana o un día libre, tu negocio se frena. La tecnología correcta cambia esto por completo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué Hacemos -->
+  <section id="hago" class="sec" style="background-color: #FFFFFF;">
+    <div class="in">
+      <div class="sec-header">
+        <span class="eyebrow">Qué hacemos</span>
+        <h2 class="h2">Tres formas de sacarte trabajo de&nbsp;encima.</h2>
+      </div>
+      <div class="grid" style="align-items: stretch;">
+        <div class="card" style="background-color: var(--bg);">
+          <span class="tag" style="color: var(--france-blue);">01</span>
+          <h3 style="font-size: 24px;">Chatbots con IA</h3>
+          <p>Asistentes inteligentes conectados a un LLM que hablan con la voz, tono y reglas exactas de tu negocio.</p>
+          <ul class="ck">
+            <li>Califican prospectos y resuelven dudas 24/7</li>
+            <li>Agendan citas y llamadas en tu calendario</li>
+            <li>Piden, leen y verifican comprobantes de pago</li>
+            <li>Derivan sin fricción a un asesor humano cuando hace falta</li>
+          </ul>
+        </div>
+        <div class="card" style="background-color: var(--bg);">
+          <span class="tag" style="color: var(--france-blue);">02</span>
+          <h3 style="font-size: 24px;">Automatización de procesos</h3>
+          <p>Conectamos tus herramientas para que la información se mueva sola y sin errores.</p>
+          <ul class="ck">
+            <li>Control de stock, órdenes y proveedores</li>
+            <li>Precios, catálogos y facturación sincronizados</li>
+            <li>Alertas internas y reportes automáticos por WhatsApp o Slack</li>
+            <li>Integraciones robustas con CRM, Google Sheets y WhatsApp API</li>
+          </ul>
+        </div>
+        <div class="card" style="background-color: var(--bg);">
+          <span class="tag" style="color: var(--france-blue);">03</span>
+          <h3 style="font-size: 24px;">Apps a medida</h3>
+          <p>Soluciones a medida para cuando una simple planilla o software genérico ya se queda corto.</p>
+          <ul class="ck">
+            <li>Plataformas para clientes (ej. portales de coaching o gestión)</li>
+            <li>Paneles de control y métricas en tiempo real</li>
+            <li>Gestión de permisos, trazabilidad y cobros</li>
+            <li>Código y herramientas de tu propiedad, sin ataduras</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos Reales -->
+  <section id="casos" class="sec" style="background-color: var(--bg);">
+    <div class="in">
+      <div class="sec-header">
+        <span class="eyebrow">Lo que ya construimos</span>
+        <h2 class="h2">Proyectos reales, no promesas.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <span class="tag" style="color: var(--france-blue);">CHATBOT · VENTAS Y TURNOS</span>
+          <h3 style="font-size: 22px;">Asistente con LLM<br>(IA Avanzada)</h3>
+          <p id="caso-1-desc">
+            No es un bot tradicional con respuestas rígidas: está impulsado por la inteligencia de ChatGPT, Claude o Gemini. <strong>Entiende y procesa audios de voz</strong>, atiende múltiples consultas en simultáneo sin demoras, califica prospectos, agenda citas en Google Calendar y valida transferencias bancarias 24/7.
+          </p>
+        </div>
+        <div class="card">
+          <span class="tag" style="color: var(--france-blue);">DESARROLLO · APPS Y WEBS</span>
+          <h3 style="font-size: 22px;">Apps, Webs y Estructuras a Medida</h3>
+          <p id="caso-2-desc">
+            Creamos plataformas a demanda (como portales de coaching para seguimiento de alumnos, entrega de contenidos y check-ins automáticos). Si lo podés imaginar, <strong>nosotros lo creamos</strong>: sistemas propios, paneles de control y flujos sin límites de plantillas.
+          </p>
+        </div>
+        <div class="card">
+          <span class="tag" style="color: var(--france-blue);">E-COMMERCE · AUTOMATIZACIÓN TOTAL</span>
+          <h3 style="font-size: 22px;">Tienda de Cerveza Artesanal</h3>
+          <p id="caso-3-desc">
+            Desarrollo integral desde cero: e-commerce y estructura automatizada a medida, eficaz y sin errores. Sincronización en tiempo real entre ventas en mostrador, despacho de mercadería, listas de precios dinámicas y control de insumos críticos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo Trabajamos -->
+  <section id="proceso" class="sec" style="background-color: #FFFFFF;">
+    <div class="in">
+      <div class="sec-header">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2 class="h2">Simple, claro y sin&nbsp;sorpresas.</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="tag" style="color: var(--france-blue);">01</span>
+          <h3>Diagnóstico gratis</h3>
+          <p>Charlamos 20 minutos y detectamos qué tareas repetitivas te roban más tiempo y dinero.</p>
+        </div>
+        <div class="process-card">
+          <span class="tag" style="color: var(--france-blue);">02</span>
+          <h3>Propuesta clara</h3>
+          <p>Alcance técnico, plazos de entrega y costo fijo sin letras chicas antes de arrancar.</p>
+        </div>
+        <div class="process-card">
+          <span class="tag" style="color: var(--france-blue);">03</span>
+          <h3>Construcción</h3>
+          <p>Desarrollamos, conectamos, probamos y documentamos todo paso a paso.</p>
+        </div>
+        <div class="process-card">
+          <span class="tag" style="color: var(--france-blue);">04</span>
+          <h3>Seguimiento</h3>
+          <p>Lanzamos la solución, medimos resultados y ajustamos lo necesario para que funcione como un reloj.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto / Diagnóstico -->
+  <section id="contacto" class="sec" style="background: radial-gradient(100% 100% at 50% 0%, #102542 0%, #0A192F 100%); color: #fff;">
+    <div class="in contact-grid">
+      <div>
+        <h2 style="font-size: clamp(32px, 4.5vw, 44px); text-align: left;">Contanos qué tarea te gustaría sacarte de encima.</h2>
+        <p style="font-size: 18px; line-height: 1.6; color: var(--text-light); margin-top: 20px;">
+          Completá el formulario y te respondemos para coordinar un diagnóstico gratuito.
+        </p>
+        <p style="color: #60A5FA; margin-top: 28px; font-weight: 600;">
+          Sin permanencias · Herramientas abiertas · Hablás directo con quienes lo construyen
+        </p>
+        <p style="color: var(--text-light); margin-top: 24px; line-height: 2;">
+          WhatsApp directo: <br>
+          <a href="https://wa.me/5492344501539" target="_blank" rel="noopener" style="color: #fff; text-decoration: underline;">+54 9 2344-501539</a> · 
+          <a href="https://wa.me/5492344506554" target="_blank" rel="noopener" style="color: #fff; text-decoration: underline;">+54 9 2344-506554</a><br>
+          Email: <a href="mailto:soporte@milerbtc.shop" style="color: #fff; text-decoration: underline;">soporte@milerbtc.shop</a>
+        </p>
+      </div>
+
+      <div style="background-color: #0E2442; border: 1px solid #1E3A5F; border-radius: 20px; padding: 32px; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);">
+        <form id="contact-form">
+          <label for="nombre">Nombre y Apellido</label>
+          <input id="nombre" class="fld" type="text" placeholder="Ej. Juan Pérez" required>
+
+          <label for="contacto_dato">WhatsApp o Email</label>
+          <input id="contacto_dato" class="fld" type="text" placeholder="Ej. +54 9 11 1234-5678 o tu@email.com" required>
+
+          <label for="mensaje">¿Qué proceso o tarea querés automatizar?</label>
+          <textarea id="mensaje" class="fld" placeholder="Contanos brevemente qué te quita tiempo en tu día a día..." required></textarea>
+
+          <button type="submit" class="btn btn-accent" style="width: 100%;">
+            Solicitar diagnóstico por WhatsApp →
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color: #0A1E25; color: #9FB3B8; font-size: 14px; padding: 28px 24px;">
+    <div class="in" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; align-items: center;">
+      <span>© 2026 MILER Technology. Todos los derechos reservados.</span>
+      <span>Menos tareas repetitivas. Más resultados.</span>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/5492344506554?text=Hola%20MILER%20Technology,%20quiero%20hacer%20una%20consulta." class="whatsapp-float" target="_blank" rel="noopener" title="Escribinos por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.004.573 1.936.877 2.806.877 3.181 0 5.767-2.586 5.767-5.766.001-3.181-2.585-5.76-5.767-5.76zm3.377 8.21c-.141.398-.823.766-1.144.814-.32.048-.718.069-2.072-.489-1.637-.674-2.688-2.339-2.77-2.449-.081-.11-.661-.881-.661-1.68 0-.798.416-1.192.564-1.353.149-.161.325-.201.433-.201.109 0 .217.002.312.008.1.006.234-.038.365.277.136.326.463 1.13.504 1.212.041.082.068.178.014.286-.055.109-.082.177-.163.272-.082.095-.172.213-.245.286-.082.081-.168.17-.072.335.095.164.423.698.908 1.13 1.246 1.107 1.488 1.17 1.705 1.28.217.108.345.095.474-.055.129-.149.554-.645.702-.866.149-.22.298-.184.5-.108.204.076 1.29.608 1.513.72.223.112.372.167.426.259.055.093.055.539-.086.937z"/>
+    </svg>
+  </a>
+
+  <!-- Script interactivo para el formulario -->
+  <script>
+    const form = document.getElementById('contact-form');
+    // Número principal de WhatsApp para el formulario
+    const WHATSAPP_NUMBER = '5492344501539';
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const contacto = document.getElementById('contacto_dato').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      const texto = `👋 Hola MILER Technology!\n\n` +
+                    `*Nombre:* ${nombre}\n` +
+                    `*Contacto:* ${contacto}\n` +
+                    `*Me gustaría automatizar / mejorar:* ${mensaje}`;
+
+      const encodedUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
+      
+      // Abrir WhatsApp en nueva pestaña
+      window.open(encodedUrl, '_blank');
+    });
+  </script>
+</body>
+</html>
